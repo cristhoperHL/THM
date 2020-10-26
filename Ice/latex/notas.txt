@@ -1,0 +1,13 @@
+1.Viendo servicios http abiertos : Icecast
+
+	exploit/windows/http/icecast_header : modulo de metaesploit de la vulnerabilidad.
+
+
+	run post/multi/recon/local_exploit_suggester : para buscar exploits en la escalada 
+
+	use exploit/windows/local/bypassuac_eventvwr : exploit escojido para la escalada.
+
+	getprivs : para ver los privilegios extendidos 
+
+	
+	

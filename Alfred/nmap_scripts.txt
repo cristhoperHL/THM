@@ -1,0 +1,56 @@
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-01 05:12 EDT
+Nmap scan report for 10.10.245.220
+Host is up (0.22s latency).
+Not shown: 997 filtered ports
+PORT     STATE SERVICE
+80/tcp   open  http
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-vuln-cve2015-1635: 
+|   VULNERABLE:
+|   Remote Code Execution in HTTP.sys (MS15-034)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-1635
+|       A remote code execution vulnerability exists in the HTTP protocol stack (HTTP.sys) that is
+|       caused when HTTP.sys improperly parses specially crafted HTTP requests. An attacker who
+|       successfully exploited this vulnerability could execute arbitrary code in the context of the System account.
+|           
+|     Disclosure date: 2015-04-14
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1635
+|_      https://technet.microsoft.com/en-us/library/security/ms15-034.aspx
+3389/tcp open  ms-wbt-server
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+| rdp-vuln-ms12-020: 
+|   VULNERABLE:
+|   MS12-020 Remote Desktop Protocol Denial Of Service Vulnerability
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2012-0152
+|     Risk factor: Medium  CVSSv2: 4.3 (MEDIUM) (AV:N/AC:M/Au:N/C:N/I:N/A:P)
+|           Remote Desktop Protocol vulnerability that could allow remote attackers to cause a denial of service.
+|           
+|     Disclosure date: 2012-03-13
+|     References:
+|       http://technet.microsoft.com/en-us/security/bulletin/ms12-020
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-0152
+|   
+|   MS12-020 Remote Desktop Protocol Remote Code Execution Vulnerability
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2012-0002
+|     Risk factor: High  CVSSv2: 9.3 (HIGH) (AV:N/AC:M/Au:N/C:C/I:C/A:C)
+|           Remote Desktop Protocol vulnerability that could allow remote attackers to execute arbitrary code on the targeted system.
+|           
+|     Disclosure date: 2012-03-13
+|     References:
+|       http://technet.microsoft.com/en-us/security/bulletin/ms12-020
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-0002
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+|_sslv2-drown: 
+8080/tcp open  http-proxy
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|_  /robots.txt: Robots file
+
+Nmap done: 1 IP address (1 host up) scanned in 617.85 seconds

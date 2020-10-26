@@ -1,0 +1,17 @@
+\BOOKMARK [1][-]{section.1}{Antecendentes}{}% 1
+\BOOKMARK [1][-]{section.2}{Objetivos}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Consideraciones}{section.2}% 3
+\BOOKMARK [1][-]{section.3}{Analisis de vulnerabilidades}{}% 4
+\BOOKMARK [2][-]{subsection.3.1}{Reconocimiento inicial}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.2}{Reconocimento por Servicios}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.3}{Reconocimento Especifico}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.4}{Vulnerabilidades}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Explotacion}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{Metodo 1}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.2}{Metodo 2}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.3}{Metodo 3}{section.4}% 12
+\BOOKMARK [1][-]{section.5}{Post-Explotacion}{}% 13
+\BOOKMARK [2][-]{subsection.5.1}{Escala de Privilegios}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.2}{Persistencia}{section.5}% 15
+\BOOKMARK [1][-]{section.6}{Soluciones}{}% 16
+\BOOKMARK [2][-]{subsection.6.1}{Actividades Post Pentest}{section.6}% 17

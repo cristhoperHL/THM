@@ -1,0 +1,45 @@
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-18 11:10 -05
+Nmap scan report for 10.10.158.204
+Host is up (0.20s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb-enum-shares: 
+|   account_used: guest
+|   \\10.10.158.204\IPC$: 
+|     Type: STYPE_IPC_HIDDEN
+|     Comment: IPC Service (skynet server (Samba, Ubuntu))
+|     Users: 1
+|     Max Users: <unlimited>
+|     Path: C:\tmp
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\10.10.158.204\anonymous: 
+|     Type: STYPE_DISKTREE
+|     Comment: Skynet Anonymous Share
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\srv\samba
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\10.10.158.204\milesdyson: 
+|     Type: STYPE_DISKTREE
+|     Comment: Miles Dyson Personal Share
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\home\milesdyson\share
+|     Anonymous access: <none>
+|     Current user access: <none>
+|   \\10.10.158.204\print$: 
+|     Type: STYPE_DISKTREE
+|     Comment: Printer Drivers
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\var\lib\samba\printers
+|     Anonymous access: <none>
+|_    Current user access: <none>
+|_smb-enum-users: ERROR: Script execution failed (use -d to debug)
+
+Nmap done: 1 IP address (1 host up) scanned in 41.83 seconds

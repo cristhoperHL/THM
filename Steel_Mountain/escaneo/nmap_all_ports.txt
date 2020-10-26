@@ -1,0 +1,22 @@
+# Nmap 7.80 scan initiated Mon Oct  5 22:00:57 2020 as: nmap -Pn -p- -o nmap_all_ports.txt 10.10.244.20
+Nmap scan report for 10.10.244.20
+Host is up (0.19s latency).
+Not shown: 65520 closed ports
+PORT      STATE SERVICE
+80/tcp    open  http
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+3389/tcp  open  ms-wbt-server
+5985/tcp  open  wsman
+8080/tcp  open  http-proxy
+47001/tcp open  winrm
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49156/tcp open  unknown
+49161/tcp open  unknown
+49162/tcp open  unknown
+
+# Nmap done at Mon Oct  5 22:26:26 2020 -- 1 IP address (1 host up) scanned in 1528.25 seconds

