@@ -1,3 +1,0 @@
-- Aprendes a usar gobuster.
-
-
